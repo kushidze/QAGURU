@@ -9,9 +9,10 @@ repositories {
 dependencies {
     testImplementation (
             'com.codeborne:selenide:5.25.0-selenium-4.0.0',
-            'org.junit.jupiter:junit-jupiter-api:5.8.0')
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.0'
+            'org.junit.jupiter:junit-jupiter:5.8.1')
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
 }
 test {
+    //..platform - Junit5, junit - Junit4
     useJUnitPlatform()
 }
