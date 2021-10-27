@@ -1,16 +1,14 @@
-package guru.qa;
+package guru.qa.page;
 
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.*;
-import org.openqa.selenium.chrome.ChromeDriver;
 
-import static com.codeborne.selenide.Browsers.EDGE;
 import static com.codeborne.selenide.Browsers.CHROME;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
-public class FirstTests2 {
+public class TextBox {
     @BeforeAll
     static void beforeAll() {
         Configuration.browser = CHROME;
@@ -22,7 +20,7 @@ public class FirstTests2 {
     }
 
     @Test
-    void fillFormat() {
+    void fillForm() {
         //Тестируем раздел "Text"
         open("https://demoqa.com/text-box");
         $("#userName").setValue("Kush");
