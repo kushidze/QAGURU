@@ -39,12 +39,6 @@ public class PracticeForm {
         Configuration.startMaximized = true;
     }
 
-    @AfterAll
-    static void afterAll() {
-
-
-    }
-
     @Test
     void practiceForm() {
         //Open "PracticeForm"
