@@ -35,7 +35,6 @@ public class PracticeForm {
 
     @BeforeAll
     static void beforeAll() {
-        Configuration.browser = CHROME;
         Configuration.startMaximized = true;
     }
 
@@ -51,35 +50,35 @@ public class PracticeForm {
         $("#lastName").setValue(lastName);
         $("#userEmail").setValue(email);
 
-//        //Gender check
+        //Gender check
         $(byText(gender)).click();
 
-//        //Mob.number check
+        //Mob.number check
         $("#userNumber").setValue(userNumber);
 
-//        //Date of birth check
+        //Date of birth check
         $("#dateOfBirthInput").click();
         $(".react-datepicker__month-select").selectOptionContainingText("September");
         $(".react-datepicker__year-select").selectOptionByValue("1992");
         $$(".react-datepicker__day").find(text("7")).click();
 
-//        //Subject check
+        //Subject check
         $("#subjectsInput").setValue("ch");
         $(byText("Chemistry")).click();
         $("#subjectsInput").setValue("ar");
         $(byText("Arts")).click();
 
-//        //Hobbies check
+        //Hobbies check
         $(byText(hobbies1)).click();
         $(byText(hobbies2)).click();
 
-//        //File upload check
+        //File upload check
         $("#uploadPicture").uploadFromClasspath(uploadFile);
 
-//        //Current address check
+        //Current address check
         $("#currentAddress").setValue(currentAddress);
 
-//      //Select state
+        //Select state
         $("#state").click();
         $(byText(state)).click();
         //Select city
@@ -92,9 +91,8 @@ public class PracticeForm {
         $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
 
         //FormFill Check
-        $$(byXpath("//td")).shouldHave(itemWithText(firstName + " " + lastName),itemWithText(email),itemWithText(gender),itemWithText(userNumber),itemWithText(dateofBirth),itemWithText(subject),itemWithText(hobbies1 + ", " + hobbies2),itemWithText(uploadFile),itemWithText(currentAddress),itemWithText(state + " " + city));
-        //Close modal form
-        $(byText("Close")).doubleClick();
+        $$(byXpath("//td")).shouldHave(itemWithText(firstName + " " + lastName), itemWithText(email), itemWithText(gender), itemWithText(userNumber), itemWithText(dateofBirth), itemWithText(subject), itemWithText(hobbies1 + ", " + hobbies2), itemWithText(uploadFile), itemWithText(currentAddress), itemWithText(state + " " + city));
+
     }
 
 }
