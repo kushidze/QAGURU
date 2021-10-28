@@ -1,61 +1,106 @@
 package guru.qa.page;
 
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.collections.ItemWithText;
+import com.codeborne.selenide.commands.PressEnter;
+import com.codeborne.selenide.commands.UploadFile;
+import com.codeborne.selenide.selector.ByText;
 import org.junit.jupiter.api.*;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 
+import java.io.File;
+
 import static com.codeborne.selenide.Browsers.CHROME;
+import static com.codeborne.selenide.CollectionCondition.itemWithText;
 import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
 
 public class PracticeForm {
+    String firstName = "Timur";
+    String lastName = "Abylaev";
+    String email = "Abylaev93@ccoc.ua";
+    String gender = "Male";
+    String userNumber = "9996435667";
+    String dateofBirth = "07 September,1992";
+    String subject = "Chemistry, Arts";
+    String uploadFile = "testFile1.jpg";
+    String hobbies1 = "Sports";
+    String hobbies2 = "Music";
+    String currentAddress = "Abay st.44, 26/1, dsds332";
+    String state = "Uttar Pradesh";
+    String city = "Agra";
 
     @BeforeAll
     static void beforeAll() {
         Configuration.browser = CHROME;
         Configuration.startMaximized = true;
-        System.out.println("Test запущен");
-
     }
 
     @AfterAll
     static void afterAll() {
-        System.out.println("Test успешно завершен");
-        sleep(5000);
+
+
     }
 
     @Test
     void practiceForm() {
-        //Тестируем раздел "PracticeForm"
+        //Open "PracticeForm"
         open("https://demoqa.com/automation-practice-form");
-        $("#userName-wrapper").$("#firstName").setValue("Timur");
-        $("#userName-wrapper").$("#lastName").setValue("Abylaev");
-//        $("#userEmail-wrapper").$("#userEmail").setValue("Abylaev93@ccoc.ua");
-//        $("#genterWrapper").$("#gender-radio-1").doubleClick();
-//        $("#genterWrapper").$("#gender-radio-2").doubleClick();
-//        $("#genterWrapper").$("#gender-radio-3").doubleClick();
-//        $("#userNumber-wrapper").$("#userNumber").setValue("9996435667");
-        $("#dateOfBirth").$("#dateOfBirthInput").click();
-        $x("//option[text()='September']").click();
-        $x("//option[text()='1992']").click();
-        $x("//div[@aria-label='Choose Monday, September 7th, 1992']").click();
-        $("#subjectsContainer").$("#subjectsInput").setValue("QA Automation course");
-//        $("#hobbiesWrapper").$("#hobbies-checkbox-1").click();
-//        $("#hobbiesWrapper").$("#hobbies-checkbox-2").click();
-        $(".form-control-file").sendKeys("C:/testFile01.txt");
-        $("#currentAddress-wrapper").$("#currentAddress").setValue("Abay st.44, 26/1, dsds332");
+        //Form checking
+        $(byText("Student Registration Form")).shouldBe(visible);
 
+        //Test user data check
+        $("#firstName").setValue(firstName);
+        $("#lastName").setValue(lastName);
+        $("#userEmail").setValue(email);
 
+//        //Gender check
+        $(byText(gender)).click();
 
+//        //Mob.number check
+        $("#userNumber").setValue(userNumber);
 
-//        Проверяем что данные отобразились
-        /*$("#output").$("#name").shouldHave(text("Kush"));
-        $("#output").$("#email").shouldHave(text("kush78@gms.kz"));
-        $("#output").$("#currentAddress").shouldHave(text("almatycity 123kjs"));
-        $("#output").$("#permanentAddress").shouldHave(text("astana 123kjs"));*/
+//        //Date of birth check
+        $("#dateOfBirthInput").click();
+        $(".react-datepicker__month-select").selectOptionContainingText("September");
+        $(".react-datepicker__year-select").selectOptionByValue("1992");
+        $$(".react-datepicker__day").find(text("7")).click();
 
-        //$("#output").shouldHave(text("Kush")), (text("kush78@gms.kz")), (text("almatycity 123kjs")), (text("astana 123kjs"));
+//        //Subject check
+        $("#subjectsInput").setValue("ch");
+        $(byText("Chemistry")).click();
+        $("#subjectsInput").setValue("ar");
+        $(byText("Arts")).click();
 
+//        //Hobbies check
+        $(byText(hobbies1)).click();
+        $(byText(hobbies2)).click();
+
+//        //File upload check
+        $("#uploadPicture").uploadFromClasspath(uploadFile);
+
+//        //Current address check
+        $("#currentAddress").setValue(currentAddress);
+
+//      //Select state
+        $("#state").click();
+        $(byText(state)).click();
+        //Select city
+        $("#city").click();
+        $(byText(city)).click();
+
+        //Submit form
+        $("#submit").click();
+        //Submit validation
+        $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
+
+        //FormFill Check
+        $$(byXpath("//td")).shouldHave(itemWithText(firstName + " " + lastName),itemWithText(email),itemWithText(gender),itemWithText(userNumber),itemWithText(dateofBirth),itemWithText(subject),itemWithText(hobbies1 + ", " + hobbies2),itemWithText(uploadFile),itemWithText(currentAddress),itemWithText(state + " " + city));
+        //Close modal form
+        $(byText("Close")).doubleClick();
     }
 
 }
