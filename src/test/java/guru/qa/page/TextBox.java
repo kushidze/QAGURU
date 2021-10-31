@@ -8,14 +8,22 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
+
 public class TextBox {
+
+    String username = "Kairow";
+    String useremail = "kush78@gms.kz";
+    String currentaddress = "almatycity 123kjs";
+    String permamentaddress = "astana 123kjs";
+
     @BeforeAll
     static void beforeAll() {
-        Configuration.browser = CHROME;
+        //Configuration.browser = CHROME;
         Configuration.startMaximized = true;
     }
     @AfterAll
     static void afterAll () {
+
         System.out.println("Test завершен");
     }
 
@@ -23,17 +31,17 @@ public class TextBox {
     void fillForm() {
         //Тестируем раздел "Text"
         open("https://demoqa.com/text-box");
-        $("#userName").setValue("Kush");
-        $("#userEmail").setValue("kush78@gms.kz");
-        $("#currentAddress").setValue("almatycity 123kjs");
-        $("#permanentAddress").setValue("astana 123kjs");
+        $("#userName").setValue(username);
+        $("#userEmail").setValue(useremail);
+        $("#currentAddress").setValue(currentaddress);
+        $("#permanentAddress").setValue(permamentaddress);
         $("#submit").click();
 
         //Проверяем что данные отобразились
-        $("#output").$("#name").shouldHave(text("Kush"));
-        $("#output").$("#email").shouldHave(text("kush78@gms.kz"));
-        $("#output").$("#currentAddress").shouldHave(text("almatycity 123kjs"));
-        $("#output").$("#permanentAddress").shouldHave(text("astana 123kjs"));
+        $("#output").$("#name").shouldHave(text(username));
+        $("#output").$("#email").shouldHave(text(useremail));
+        $("#output").$("#currentAddress").shouldHave(text(currentaddress));
+        $("#output").$("#permanentAddress").shouldHave(text(permamentaddress));
 
         //$("#output").shouldHave(text("Kush")), (text("kush78@gms.kz")), (text("almatycity 123kjs")), (text("astana 123kjs"));
 

@@ -58,8 +58,8 @@ public class PracticeForm {
 
         //Date of birth check
         $("#dateOfBirthInput").click();
-        $(".react-datepicker__month-select").selectOptionContainingText("September");
-        $(".react-datepicker__year-select").selectOptionByValue("1992");
+        $(".react-datepicker__month-select").selectOption("September");
+        $(".react-datepicker__year-select").selectOption("1992");
         $$(".react-datepicker__day").find(text("7")).click();
 
         //Subject check
