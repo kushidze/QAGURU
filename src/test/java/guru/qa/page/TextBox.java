@@ -18,11 +18,11 @@ public class TextBox {
 
     @BeforeAll
     static void beforeAll() {
-        //Configuration.browser = CHROME;
         Configuration.startMaximized = true;
     }
+
     @AfterAll
-    static void afterAll () {
+    static void afterAll() {
 
         System.out.println("Test завершен");
     }
