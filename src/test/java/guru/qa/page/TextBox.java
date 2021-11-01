@@ -43,8 +43,6 @@ public class TextBox {
         $("#output").$("#currentAddress").shouldHave(text(currentaddress));
         $("#output").$("#permanentAddress").shouldHave(text(permamentaddress));
 
-        //$("#output").shouldHave(text("Kush")), (text("kush78@gms.kz")), (text("almatycity 123kjs")), (text("astana 123kjs"));
-
     }
 
 }
